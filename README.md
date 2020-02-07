@@ -93,3 +93,9 @@ python3 -c 'import pty;pty.spawn("/bin/bash")'
 ```bash
 awk 'BEGIN {system("/bin/sh")}'
 ```
+
+## File Transfer
+### Remote Desktop
+```
+rdesktop -u <username> -p <password> -r disk:tmp=~/Desktop 127.0.0.1:8080
+```
